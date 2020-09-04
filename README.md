@@ -43,6 +43,8 @@ Run `offlinerss` when you want to update your RSS feeds.
 - You can replace `offlinerss` with another implementation and the data doesn't
   need any transformation, as offlinerss doesn't do any transformation at all,
   just splits it to file.
+- You can view the files with any simple application that reads the file and
+  renders it to HTML or any other format
 
 ## Motivation
 
