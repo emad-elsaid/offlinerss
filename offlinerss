@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/inline'
+require 'open-uri'
+require 'fileutils'
+require 'digest'
+require 'yaml'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'rss'
+end
+
+def mkdir(*paths)
+  path = File.join(*paths)
+  FileUtils.mkdir(path) unless Dir.exist?(path)
+  path
+end
+
+destination = mkdir(File.expand_path('~/rss/'))
+inbox = mkdir(destination, 'INBOX')
+meta_dir = mkdir(destination, '.meta')
+
+config_file = File.join(destination, 'config.yml')
+config = YAML.load_file(config_file)
+urls = config['urls']
+
+urls.each do |url|
+  url_digest = Digest::SHA1.hexdigest(url)
+  puts "[Get] #{url}"
+
+  URI.open(url) do |rss|
+    content = rss.read
+    feed = RSS::Parser.parse(content)
+
+    feed.items.each do |item|
+      id = item.respond_to?(:id) ? item.id : item.guid
+      id_digest = Digest::SHA1.hexdigest(id.content)
+      file_basename = url_digest + '-' + id_digest + '.xml'
+
+      next unless Dir.glob(File.join(destination, '**', file_basename)).empty?
+
+      filename = File.join(inbox, file_basename)
+      File.write(filename, item.to_s)
+    end
+
+    [{ start_tag: '<entry>', end_tag: '</entry>' }, { start_tag: '<item>', end_tag: '</item>' }].each do |tag|
+      next unless content.include?(tag[:start_tag])
+
+      content[content.index(tag[:start_tag])...(content.rindex(tag[:end_tag]) + tag[:end_tag].length)] = ''
+    end
+
+    metafile = File.join(meta_dir, url_digest + '.xml')
+    File.write(metafile, content)
+  end
+end
