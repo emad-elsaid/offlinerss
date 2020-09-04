@@ -27,11 +27,11 @@ Run `offlinerss` when you want to update your RSS feeds.
 - offlinerss will read `~/rss/config.yml`
 - Will read each URL
 - For each entry it will write its XML to a file in `~/rss/INBOX/` with a name
-  in this format `sha1(feed url)-sha1(entry id/guid).xml`
-- If the file `sha1(feed url)-sha1(entry id/guid).xml` exist under any
+  in this format `sha1(feed url)-sha1(entry id/guid).rss`
+- If the file `sha1(feed url)-sha1(entry id/guid).rss` exist under any
   subdirector in `~/rss` it will not be written again.
 - The rest of the RSS feed is written to `~/rss/.meta` to a file with a name in
-  this format `sha1(feed url).xml`
+  this format `sha1(feed url).rss`
 
 
 ## Benefits of using the file system as a database

@@ -37,7 +37,7 @@ urls.each do |url|
     feed.items.each do |item|
       id = item.respond_to?(:id) ? item.id : item.guid
       id_digest = Digest::SHA1.hexdigest(id.content)
-      file_basename = url_digest + '-' + id_digest + '.xml'
+      file_basename = url_digest + '-' + id_digest + '.rss'
 
       next unless Dir.glob(File.join(destination, '**', file_basename)).empty?
 
@@ -51,7 +51,7 @@ urls.each do |url|
       content[content.index(tag[:start_tag])...(content.rindex(tag[:end_tag]) + tag[:end_tag].length)] = ''
     end
 
-    metafile = File.join(meta_dir, url_digest + '.xml')
+    metafile = File.join(meta_dir, url_digest + '.rss')
     File.write(metafile, content)
   end
 end
