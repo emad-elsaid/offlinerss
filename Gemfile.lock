@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    offlinerss (0.1.0)
+    offlinerss (0.1.1)
       rss
 
 GEM
