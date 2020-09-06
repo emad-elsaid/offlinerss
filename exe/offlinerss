@@ -37,7 +37,7 @@ urls.each do |url|
       next unless Dir.glob(File.join(destination, '**', file_basename)).empty?
 
       filename = File.join(inbox, file_basename)
-      File.write(filename, item.to_s)
+      File.write(filename, item.to_s, perm: 0444)
     end
 
     [{ start_tag: '<entry>', end_tag: '</entry>' }, { start_tag: '<item>', end_tag: '</item>' }].each do |tag|
