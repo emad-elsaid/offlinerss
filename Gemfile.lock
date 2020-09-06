@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    offlinerss (0.1.0)
+      rss
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.0.1)
+    rss (0.2.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  offlinerss!
+  rake
+
+BUNDLED WITH
+   2.1.4
