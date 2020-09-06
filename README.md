@@ -11,8 +11,15 @@ won't be created again when you run `offlinerss`.
 
 ## Usage
 
-Clone or copy `offlinerss` to any directory in your `PATH`, put a config file
-that include your RSS feeds URLs in `~/rss/config.yml` as follows
+
+Install `offlinerss` gem
+
+```
+$ gem install offlinerss
+```
+
+
+Create `~/rss/config.yml` And list your RSS feeds URLs
 
 ```yaml
 urls:
