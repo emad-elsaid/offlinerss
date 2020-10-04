@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'offlinerss'
-  spec.version       = '0.1.1'
+  spec.version       = '0.1.2'
   spec.authors       = ['Emad Elsaid']
   spec.email         = ['emad.elsaid.hamed@gmail.com']
 

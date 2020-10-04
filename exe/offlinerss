@@ -30,8 +30,10 @@ urls.each do |url|
     feed = RSS::Parser.parse(content)
 
     feed.items.each do |item|
-      id = item.respond_to?(:id) ? item.id : item.guid
-      id_digest = Digest::SHA1.hexdigest(id.content)
+      id = (item.respond_to?(:id) && item.id && item.id.content) ||
+           (item.respond_to?(:guid) && item.guid && item.guid.content) ||
+           (item.respond_to?(:link) && item.link)
+      id_digest = Digest::SHA1.hexdigest(id)
       file_basename = url_digest + '-' + id_digest + '.rss'
 
       next unless Dir.glob(File.join(destination, '**', file_basename)).empty?

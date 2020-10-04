@@ -1,14 +1,16 @@
 PATH
   remote: .
   specs:
-    offlinerss (0.1.1)
+    offlinerss (0.1.2)
       rss
 
 GEM
   remote: https://rubygems.org/
   specs:
     rake (13.0.1)
-    rss (0.2.8)
+    rexml (3.2.4)
+    rss (0.2.9)
+      rexml
 
 PLATFORMS
   ruby
