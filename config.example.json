@@ -1,0 +1,6 @@
+{
+  "urls": [
+    "http://www.example.com/rssfeed.xml",
+    "http://www.example.com/atomfeed.xml"
+  ]
+}
