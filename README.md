@@ -36,6 +36,13 @@ Run `offlinerss` when you want to download your RSS feeds.
 - The rest of the RSS feed is written to `~/rss/.meta` to a file with a name in
   this format `sha1(feed url).rss`
 
+## Design guidelines
+
+- No dependencies. Just Go! itself
+- Sync in parallel as the process is mostly IO bound.
+- No sub packages.
+- No unnedeeded abstractions
+
 ## Benefits of using the file system as a database
 
 - Any application can read it
@@ -61,3 +68,5 @@ The Go implementation has a small difference in the rss item file name. Instead 
 So if you used the ruby implementation and you ran the Go implementation on the same rss directory it will write existing rss item again to INBOX as the filename is different.
 
 So to upgrade, make sure you have read and moved all your RSS items from INBOX then run the go implementation which will write again all rss items from your feeds to INBOX. After that move all items in INBOX to another directory say "Duplicates" or "Trash".
+
+Another difference is the `config` file. now is in JSON format instead of YAML
