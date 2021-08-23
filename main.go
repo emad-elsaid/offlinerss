@@ -62,7 +62,7 @@ func main() {
 
 	for _, url := range config.URLs {
 		go func(url string) {
-			err := refreshRSS(config, destination, metaDir, inbox, url)
+			err := downloadRSS(config, destination, metaDir, inbox, url)
 			if err != nil {
 				log.Printf("Error refreshing RSS: %s\n\t%s", url, err)
 			}
@@ -84,7 +84,7 @@ func ensurePath(paths ...string) (string, error) {
 	return path, err
 }
 
-func refreshRSS(config Config, destination, metaDir, inbox, url string) error {
+func downloadRSS(config Config, destination, metaDir, inbox, url string) error {
 	log.Printf("[GET] %s", url)
 
 	urlDigest := fmt.Sprintf("%x", sha1.Sum([]byte(url)))
