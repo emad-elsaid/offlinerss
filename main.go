@@ -146,7 +146,7 @@ func fetchRSS(url string, config Config) ([]byte, [][]byte, error) {
 		}
 
 		end := bytes.LastIndex(body, tag.end)
-		meta.Write(body[:start-1])
+		meta.Write(body[:start])
 		meta.Write(body[end+len(tag.end):])
 	}
 
