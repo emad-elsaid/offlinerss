@@ -16,7 +16,7 @@ won't be created again when you run `offlinerss`.
 Using Go toolchain:
 
 ```
-$ go install github.com/emad-elsaid/offlinerss@v0.1.3
+$ go install github.com/emad-elsaid/offlinerss@master
 ```
 
 Copy [config.example.json](config.example.json) to `~/rss/config.json` and fill it with your RSS feeds URLs
